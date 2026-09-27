@@ -57,6 +57,8 @@ button:disabled { opacity: .42; cursor: not-allowed; }
 .status.confirmed { color: #276246; background: #dcf0e5; }
 .status.rejected { color: #81534d; background: #f1e3e0; }
 .status.merged { color: #315f77; background: #dcebf2; }
+.review-tag { padding: 2px 6px; border-radius: 8px; color: #9b4d3d; background: #fae8e3; font-size: 8px; font-weight: 800; }
+.review-tag.done { color: #276246; background: #dcf0e5; }
 .record-id { margin-left: auto; font-family: ui-monospace, monospace; }
 .pair-preview { display: grid; grid-template-columns: minmax(0, 1fr) 20px minmax(0, 1fr); align-items: center; gap: 3px; margin-top: 8px; }
 .pair-preview > div { min-width: 0; display: flex; flex-direction: column; gap: 2px; }
@@ -94,6 +96,8 @@ button:disabled { opacity: .42; cursor: not-allowed; }
 .field-compare > div { padding: 7px; background: white; line-height: 1.45; word-break: break-word; }
 .field-compare .field-label { color: #4e6872; background: #f0f4f4; font-weight: 700; }
 .field-compare .different { color: #8d4938; background: #fff8f6; }
+.gate-warning { margin-top: 10px; padding: 9px 11px; border: 1px solid #ecc9bf; border-radius: 8px; color: #8d4938; background: #fdf3f0; font-size: 10px; line-height: 1.6; }
+.review-done { margin-top: 10px; padding: 8px 11px; border: 1px solid #c4ddd0; border-radius: 8px; color: #276246; background: #eef7f1; font-size: 10px; }
 .action-stack { gap: 8px; margin-top: 13px; }
 .split-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; width: 100%; }
 .split-actions .button { width: 100%; }
@@ -103,7 +107,9 @@ button:disabled { opacity: .42; cursor: not-allowed; }
 .merge-log ul { padding-left: 16px; }
 .merge-log li { margin: 6px 0; }
 .merge-log li strong { display: block; }
-.merge-log li span { color: #5e7178; }
+.merge-log li span { display: block; color: #5e7178; }
+.merge-log li span.dropped { color: #9b5a4b; }
+.merge-log li span.reason { color: #7a6a55; }
 .shortcut-panel { display: grid; align-content: start; gap: 8px; }
 .shortcut-panel div { display: grid; grid-template-columns: 112px 1fr; align-items: center; padding: 9px; border-bottom: 1px solid #e5eaec; font-size: 10px; }
 kbd { justify-self: start; padding: 3px 6px; border: 1px solid #c8d2d5; border-bottom-width: 2px; border-radius: 5px; background: #f0f3f4; font-family: ui-monospace, monospace; font-size: 9px; }
@@ -129,6 +135,7 @@ kbd { justify-self: start; padding: 3px 6px; border: 1px solid #c8d2d5; border-b
 .modal-header h2 { margin: 4px 0 0; font-family: "Songti SC", serif; font-size: 22px; }
 .modal-close { border: 0; color: #6f8086; background: transparent; font-size: 24px; line-height: 1; }
 .modal-description { margin: 7px 20px 14px; }
+.modal-hint { margin: 0 20px 12px; padding: 8px 11px; border: 1px solid #ecc9bf; border-radius: 8px; color: #8d4938; background: #fdf3f0; font-size: 10px; line-height: 1.6; }
 .import-controls { gap: 8px; padding: 0 20px; }
 .radio-card { display: flex; align-items: center; flex: 1; gap: 8px; padding: 9px; border: 1px solid #d5dfe1; border-radius: 8px; font-size: 10px; }
 .radio-card:has(input:checked) { border-color: #5b99a7; background: #edf5f6; }
@@ -150,6 +157,8 @@ kbd { justify-self: start; padding: 3px 6px; border: 1px solid #c8d2d5; border-b
 .source-option b { display: grid; place-items: center; flex: 0 0 auto; width: 18px; height: 18px; color: white; border-radius: 50%; background: #3f7585; font-size: 8px; }
 .combine-button { align-self: center; padding: 6px; border: 1px solid #d2dcde; border-radius: 6px; color: #5f737a; background: white; font-size: 8px; }
 .combine-button.selected { color: white; border-color: #9b7244; background: #9b7244; }
+.reason-input { grid-column: 1 / -1; border: 1px solid #e4d5cc; border-radius: 6px; padding: 6px 8px; color: #6b4f44; background: #fffaf7; font-size: 9px; outline: none; }
+.reason-input:focus { border-color: #c98f6f; box-shadow: 0 0 0 3px rgba(201,143,111,.12); }
 .qwik-check { display: grid; place-items: center; width: 17px; height: 17px; border: 1px solid #b9c8cc; border-radius: 4px; background: white; cursor: pointer; }
 .qwik-check[aria-checked="true"] { color: white; border-color: #3d7c89; background: #3d7c89; }
 @media (max-width: 1330px) { .desk-grid { grid-template-columns: minmax(330px, 1fr) minmax(380px, 1.15fr) minmax(300px, .85fr); gap: 10px; padding: 0 12px; } .overview, .bottom-grid { padding-left: 12px; padding-right: 12px; } .metrics { gap: 14px; } }

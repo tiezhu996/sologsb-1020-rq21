@@ -1,6 +1,20 @@
 export type RecordGroup = 'A' | 'B';
 export type MatchStatus = 'suggested' | 'confirmed' | 'rejected' | 'merged';
 export type FieldKey = 'title' | 'date' | 'people' | 'places' | 'identifier' | 'medium' | 'extent' | 'rights' | 'notes';
+export type FieldSource = RecordGroup | 'combine';
+
+export interface FieldDecision {
+  source: FieldSource;
+  kept: string;
+  dropped: string;
+  reason: string;
+}
+
+export interface FieldReview {
+  choices: Partial<Record<FieldKey, FieldSource>>;
+  reasons: Partial<Record<FieldKey, string>>;
+  reviewedAt: string;
+}
 
 export interface ArchiveRecord {
   id: string;
@@ -16,6 +30,7 @@ export interface ArchiveRecord {
   notes: string;
   updatedAt: string;
   status: 'unreviewed' | 'confirmed' | 'rejected' | 'merged';
+  fieldSources?: Partial<Record<FieldKey, FieldDecision>>;
 }
 
 export interface MatchCandidate {
@@ -27,6 +42,7 @@ export interface MatchCandidate {
   status: MatchStatus;
   reasons: string[];
   reviewedAt?: string;
+  fieldReview?: FieldReview;
 }
 
 export interface MergeResult {
@@ -34,8 +50,10 @@ export interface MergeResult {
   matchId: string;
   leftId: string;
   rightId: string;
-  chosen: Partial<Record<FieldKey, RecordGroup | 'combine'>>;
+  mergedId: string;
+  chosen: Partial<Record<FieldKey, FieldSource>>;
   values: Partial<Record<FieldKey, string>>;
+  decisions: Partial<Record<FieldKey, FieldDecision>>;
   mergedAt: string;
 }
 

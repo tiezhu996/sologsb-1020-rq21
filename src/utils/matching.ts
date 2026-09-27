@@ -1,5 +1,7 @@
 import type { ArchiveRecord, FieldKey, MatchCandidate } from '../types';
 
+export const LOW_SCORE_THRESHOLD = 0.68;
+
 const normalize = (value: string) => value.toLowerCase().replace(/[\s·,，。:：;；()（）\-_/]/g, '');
 const chars = (value: string) => {
   const text = normalize(value);
